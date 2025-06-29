@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Fetch Scan Data</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <h1>Test Scan Data Fetching</h1>
+
+    <label for="test_scan_type">Select Scan Type (ID):</label>
+    <input type="text" id="test_scan_type" value="1"> <button id="fetchCategories">Fetch Categories</button>
+    <div id="categoryOutput"></div>
+
+    <hr>
+
+    <label for="test_category_id">Select Category (ID):</label>
+    <input type="text" id="test_category_id" value="1"> <button id="fetchResults">Fetch Results</button>
+    <div id="resultOutput"></div>
+
+    <script>
+        $(document).ready(function() {
+            $('#fetchCategories').on('click', function() {
+                var scanTypeId = $('#test_scan_type').val();
+                $.ajax({
+                    url: 'fetch_scan_data.php',
+                    type: 'POST',
+                    data: { scan_type_id: scanTypeId },
+                    dataType: 'json',
+                    success: function(response) {
+                        $('#categoryOutput').text(JSON.stringify(response, null, 2));
+                    },
+                    error: function(xhr, status, error) {
+                        $('#categoryOutput').text('Error: ' + status + ' - ' + error + '\nResponse: ' + xhr.responseText);
+                    }
+                });
+            });
+
+            $('#fetchResults').on('click', function() {
+                var categoryId = $('#test_category_id').val();
+                $.ajax({
+                    url: 'fetch_scan_data.php',
+                    type: 'POST',
+                    data: { category_id: categoryId },
+                    dataType: 'json',
+                    success: function(response) {
+                        $('#resultOutput').text(JSON.stringify(response, null, 2));
+                    },
+                    error: function(xhr, status, error) {
+                        $('#resultOutput').text('Error: ' + status + ' - ' + error + '\nResponse: ' + xhr.responseText);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

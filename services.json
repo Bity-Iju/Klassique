@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "name": "Consultation",
+        "price": 2000,
+        "icon_class": "fas fa-user-md"
+    },
+    {
+        "id": 2,
+        "name": "Dressing",
+        "price": 1500,
+        "icon_class": "fas fa-bandage"
+    },
+    {
+        "id": 3,
+        "name": "Injection",
+        "price": 1000,
+        "icon_class": "fas fa-syringe"
+    }
+]
